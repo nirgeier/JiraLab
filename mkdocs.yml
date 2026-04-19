@@ -1,0 +1,238 @@
+###
+### mkdocs-site.yml
+###
+docs_dir: Labs
+edit_uri:
+repo_name: nirgeier/JiraLab
+repo_url: https://github.com/nirgeier/JiraLab
+site_author: Nir Geier - nirgeier@gmail.com
+site_description: A collection of Jira Hands-On Labs
+site_dir: ./mkdocs-site
+site_name: JiraLab
+site_url: https://nirgeier.github.io/JiraLab/
+###
+### mkdocs-theme.yml
+###
+copyright: "©2026 Nir Geier<br/><a
+  href=\"https://visitor-badge.laobi.icu/badge?page_id=nirgeier\"
+  target=\"_blank\" rel=\"noopener\"><img
+  src=\"https://visitor-badge.laobi.icu/badge?page_id=nirgeier\" alt=\"Visitor
+  Badge\"></a>"
+theme:
+  name: material
+  custom_dir: .mkdocs-build/overrides
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.footnote.tooltips
+    - content.tabs.link
+    - content.tooltips
+    - content.footer.last-updated
+    - content.footer.contributors
+    - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    - toc.integrate
+    - toc.sticky
+  palette:
+    - scheme: slate
+      primary: indigo
+  font:
+    text: Mulish
+    code: JetBrains Mono
+  favicon: assets/favicon.png
+  icon:
+    logo: logo
+    repo: fontawesome/brands/github
+    admonition:
+      note: material/lightbulb
+###
+### mkdocs-extra.yml
+###
+
+extra:
+  assets:
+    - ./assets/images/
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/nirgeier/JiraLab
+      name: View on GitHub
+      class: social-class__github
+
+    - icon: octicons/repo-forked-16
+      link: https://github.com/nirgeier/JiraLab/network/members
+      name: Fork this repo
+      class: social-class__fork
+
+    - icon: octicons/star-16
+      link: https://github.com/nirgeier/JiraLab/stargazers
+      name: Star this repo
+      class: social-class__star
+
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/nirgeier/
+      name: Connect on LinkedIn
+      class: social-class__linkedin
+
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/U6xW23Ss
+      name: Follow me on Discord
+      class: social-class__discord
+
+    - icon: fontawesome/brands/stack-overflow
+      link: https://stackoverflow.com/users/1755598/codewizard
+      name: Follow me on Stack Overflow
+      class: social-class__stackoverflow
+
+    - icon: fontawesome/brands/whatsapp
+      link: https://wa.me/972548122310
+      name: Follow me on WhatsApp
+      class: social-class__whatsapp
+
+    - icon: fontawesome/solid/envelope
+      link: mailto:nirg@codewizard.co.il
+      name: Email me
+      class: social-class__email
+
+extra_css:
+  - ./assets/stylesheets/codewizard.css?v=1776569250
+extra_javascript:
+  - https://buttons.github.io/buttons.js?v=1776569250
+###
+### mkdocs-plugins.yml
+###
+
+plugins:
+  - awesome-pages
+  - meta
+  - git-committers:
+      branch: main
+      docs_path: Labs
+      enabled: true
+      repository: nirgeier/JiraLab
+  - git-revision-date-localized:
+      enable_creation_date: true
+      enable_git_follow: false
+      fallback_to_build_date: true
+      locale: en
+      timezone: UTC
+      type: date
+  - search:
+      separator: "[\\s\\u200b\\-_,:!=\\[\\]()\"`/]+|\\.(?!\\d)|&[lg]t;|(?!\\b)(?=[A-Z\
+        ][a-z])"
+  - minify:
+      minify_html: true
+  - print-site
+  - include-markdown
+###
+### mkdocs-extensions.yml
+###
+
+markdown_extensions:
+  - toc:
+      permalink: false
+      baselevel: 3
+      toc_depth: 3
+  - abbr
+  - tables
+  - admonition
+  - footnotes
+  - attr_list
+  - def_list
+  - md_in_html
+  - smarty
+  - meta
+  - codehilite:
+      guess_lang: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.tilde
+  - pymdownx.snippets
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: "!!python/name:pymdownx.superfences.fence_code_format"
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji ""
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg ""
+        ###
+        ### mkdocs-nav.yml
+        ###
+
+nav:
+  - Labs:
+      - index.md
+      # --- User Labs ---
+      - 001-JiraOverview: 001-JiraOverview/README.md
+      - 002-NavigationAndDashboards: 002-NavigationAndDashboards/README.md
+      - 003-CreatingIssues: 003-CreatingIssues/README.md
+      - 004-WorkflowBasics: 004-WorkflowBasics/README.md
+      - 005-SearchAndFilters: 005-SearchAndFilters/README.md
+      - 006-BoardsAndSprints: 006-BoardsAndSprints/README.md
+      # --- Manager Labs ---
+      - 007-TeamManagement: 007-TeamManagement/README.md
+      - 008-ReportsAndMetrics: 008-ReportsAndMetrics/README.md
+      # --- Admin Labs ---
+      - 009-ProjectConfiguration: 009-ProjectConfiguration/README.md
+      - 010-WorkflowCustomization: 010-WorkflowCustomization/README.md
+      - 011-PermissionsAndSchemes: 011-PermissionsAndSchemes/README.md
+      - 012-AutomationRules: 012-AutomationRules/README.md
+      - 013-AdvancedAdmin: 013-AdvancedAdmin/README.md
+      # --- Tasks & Solutions ---
+      - Tasks:
+          - Tasks/index.md
+          - Tasks/Task-01.md
+          - Tasks/Task-02.md
+          - Tasks/Task-03.md
+          - Tasks/Task-04.md
+          - Tasks/Task-05.md
+          - Tasks/Task-06.md
+          - Tasks/Task-07.md
+          - Tasks/Task-08.md
+          - Tasks/Task-09.md
+          - Tasks/Task-10.md
+          - Tasks/Task-11.md
+          - Tasks/Task-12.md
+          - Tasks/Task-13.md
+      - Solutions:
+          - Solutions/index.md
+          - Solutions/Solution-01.md
+          - Solutions/Solution-02.md
+          - Solutions/Solution-03.md
+          - Solutions/Solution-04.md
+          - Solutions/Solution-05.md
+          - Solutions/Solution-06.md
+          - Solutions/Solution-07.md
+          - Solutions/Solution-08.md
+          - Solutions/Solution-09.md
+          - Solutions/Solution-10.md
+          - Solutions/Solution-11.md
+          - Solutions/Solution-12.md
+          - Solutions/Solution-13.md
