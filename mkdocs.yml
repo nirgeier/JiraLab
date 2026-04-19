@@ -6,18 +6,16 @@ edit_uri:
 repo_name: nirgeier/JiraLab
 repo_url: https://github.com/nirgeier/JiraLab
 site_author: Nir Geier - nirgeier@gmail.com
-site_description: A collection of Jira Hands-On Labs
+site_description: A collection of JiraLab Labs
 site_dir: ./mkdocs-site
 site_name: JiraLab
 site_url: https://nirgeier.github.io/JiraLab/
 ###
 ### mkdocs-theme.yml
 ###
-copyright: "©2026 Nir Geier<br/><a
-  href=\"https://visitor-badge.laobi.icu/badge?page_id=nirgeier\"
-  target=\"_blank\" rel=\"noopener\"><img
-  src=\"https://visitor-badge.laobi.icu/badge?page_id=nirgeier\" alt=\"Visitor
-  Badge\"></a>"
+copyright:
+  '©2026 Nir Geier<br/><a href="https://visitor-badge.laobi.icu/badge?page_id=nirgeier" target="_blank" rel="noopener"><img
+  src="https://visitor-badge.laobi.icu/badge?page_id=nirgeier" alt="Visitor Badge"></a>'
 theme:
   name: material
   custom_dir: .mkdocs-build/overrides
@@ -39,18 +37,27 @@ theme:
     - navigation.instant
     - navigation.instant.prefetch
     - navigation.instant.progress
+    #- navigation.prune        # Disabled - hides sections when tabs are off
     - navigation.sections
-    - navigation.top
+    #- navigation.tabs          # Disabled - left nav only
+    #- navigation.tabs.sticky   # Disabled - left nav only
+    #- navigation.top
     - navigation.tracking
     - search.highlight
     - search.share
     - search.suggest
     - toc.follow
-    - toc.integrate
+    - toc.integrate # Disabled - replaces full nav with per-page TOC in sidebar
     - toc.sticky
+
+    #- header.autohide  # Disabled to keep top nav always visible
+
+  # 👈 enables avatar display
   palette:
+    # Dark mode only
     - scheme: slate
-      primary: indigo
+      primary: indigo # You can choose any color here
+
   font:
     text: Mulish
     code: JetBrains Mono
@@ -110,9 +117,9 @@ extra:
       class: social-class__email
 
 extra_css:
-  - ./assets/stylesheets/codewizard.css?v=1776569250
+  - ./assets/stylesheets/codewizard.css?v=1776595841
 extra_javascript:
-  - https://buttons.github.io/buttons.js?v=1776569250
+  - https://buttons.github.io/buttons.js?v=1776595841
 ###
 ### mkdocs-plugins.yml
 ###
@@ -120,9 +127,16 @@ extra_javascript:
 plugins:
   - awesome-pages
   - meta
+  # - pdf-export:
+  #     combined: true # all pages in one PDF
+  #     combined_output_path: docs/Full-Documentation.pdf
+  #     media_type: print
+  #     verbose: true
+  # Git
+  #- git-authors
   - git-committers:
       branch: main
-      docs_path: Labs
+      docs_path: Labs # set if your docs folder is not root
       enabled: true
       repository: nirgeier/JiraLab
   - git-revision-date-localized:
@@ -133,10 +147,11 @@ plugins:
       timezone: UTC
       type: date
   - search:
-      separator: "[\\s\\u200b\\-_,:!=\\[\\]()\"`/]+|\\.(?!\\d)|&[lg]t;|(?!\\b)(?=[A-Z\
-        ][a-z])"
+      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
       minify_html: true
+
+  # Leave this one as the last one in the list
   - print-site
   - include-markdown
 ###
@@ -144,47 +159,47 @@ plugins:
 ###
 
 markdown_extensions:
-  - toc:
-      permalink: false
-      baselevel: 3
-      toc_depth: 3
-  - abbr
-  - tables
-  - admonition
-  - footnotes
-  - attr_list
-  - def_list
-  - md_in_html
-  - smarty
-  - meta
-  - codehilite:
-      guess_lang: true
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.details
-  - pymdownx.inlinehilite
-  - pymdownx.keys
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.tilde
-  - pymdownx.snippets
-  - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: "!!python/name:pymdownx.superfences.fence_code_format"
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji ""
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg ""
-        ###
-        ### mkdocs-nav.yml
-        ###
+      - toc:
+              permalink: false
+              baselevel: 3
+              toc_depth: 3
+      - abbr
+      - tables
+      - admonition # For callouts/notes
+      - footnotes # Footnotes support
+      - attr_list # Attribute lists for elements
+      - def_list # Definition lists
+      - md_in_html # Markdown inside HTML blocks
+      - smarty # Smart punctuation
+      - meta
+      - codehilite:
+              guess_lang: true # Fallback code highlighting
+      - pymdownx.tabbed:
+              alternate_style: true
+      - pymdownx.details # Collapsible details
+      - pymdownx.inlinehilite # Inline code highlighting
+      - pymdownx.keys # Keyboard key formatting
+      - pymdownx.tasklist:
+              custom_checkbox: true
+      - pymdownx.betterem:
+              smart_enable: all
+      - pymdownx.tilde # Subscript/superscript
+      - pymdownx.snippets # Snippet includes
+      - pymdownx.highlight:
+              anchor_linenums: true
+              line_spans: __span
+              pygments_lang_class: true
+      - pymdownx.superfences:
+              custom_fences:
+                    - name: mermaid
+                      class: mermaid
+                      format: "!!python/name:pymdownx.superfences.fence_code_format"
+      - pymdownx.emoji:
+              emoji_index: !!python/name:material.extensions.emoji.twemoji
+              emoji_generator: !!python/name:material.extensions.emoji.to_svg
+###
+### mkdocs-nav.yml
+###
 
 nav:
   - Labs:
